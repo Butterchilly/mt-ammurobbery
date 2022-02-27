@@ -8,6 +8,7 @@ qb-menu: https://github.com/qbcore-framework/qb-menu
 qb-lock: qb-lock: https://github.com/M-Middy/qb-lock
 
 # Preview
-SOON
+https://youtu.be/0n1JmB6XhEQ
+
 # Discord
 https://discord.gg/AQHbsahZsV 
