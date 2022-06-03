@@ -1,11 +1,16 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
+RegisterNetEvent('police:SetCopCount')
+AddEventHandler('police:SetCopCount', function(amount)
+    CurrentCops = amount
+end)
+
 -- Event para roubar vitrines
 RegisterNetEvent('mt-ammurobbery:client:RoubarVitrine')
 AddEventHandler("mt-ammurobbery:client:RoubarVitrine", function()
     local pos = GetEntityCoords(PlayerPedId())
     QBCore.Functions.TriggerCallback("mt-ammurobbery:CooldownVitrines", function(cooldown)
-        if not cooldown then
+        if not cooldown and CurrentCops == 2 then
     QBCore.Functions.Progressbar("vitrine", "SEARCHING...", 5000, false, true, {
         disableMovement = true,
         disableCarMovement = true,
@@ -31,7 +36,7 @@ AddEventHandler("mt-ammurobbery:client:RoubarVitrine", function()
         end
     end)
     else
-        QBCore.Functions.Notify("The store was recently robbed and is empty...")
+        QBCore.Functions.Notify("The store was recently robbed and is empty or no police...")
         end
     end)
 end)
@@ -40,7 +45,7 @@ RegisterNetEvent('mt-ammurobbery:client:RoubarVitrine2')
 AddEventHandler("mt-ammurobbery:client:RoubarVitrine2", function()
     local pos = GetEntityCoords(PlayerPedId())
     QBCore.Functions.TriggerCallback("mt-ammurobbery:CooldownVitrines2", function(cooldown)
-        if not cooldown then
+        if not cooldown and CurrentCops == 2 then
     QBCore.Functions.Progressbar("vitrine2", "SEARCHING...", 5000, false, true, {
         disableMovement = true,
         disableCarMovement = true,
@@ -66,7 +71,7 @@ AddEventHandler("mt-ammurobbery:client:RoubarVitrine2", function()
         end
     end)
     else
-        QBCore.Functions.Notify("The store was recently robbed and is empty...")
+        QBCore.Functions.Notify("The store was recently robbed and is empty or no police....")
         end
     end)
 end)
@@ -75,7 +80,7 @@ RegisterNetEvent('mt-ammurobbery:client:RoubarVitrine3')
 AddEventHandler("mt-ammurobbery:client:RoubarVitrine3", function()
     local pos = GetEntityCoords(PlayerPedId())
     QBCore.Functions.TriggerCallback("mt-ammurobbery:CooldownVitrines3", function(cooldown)
-        if not cooldown then
+        if not cooldown and CurrentCops == 2 then
     QBCore.Functions.Progressbar("vitrine3", "SEARCHING...", 5000, false, true, {
         disableMovement = true,
         disableCarMovement = true,
@@ -101,7 +106,7 @@ AddEventHandler("mt-ammurobbery:client:RoubarVitrine3", function()
         end
     end)
     else
-        QBCore.Functions.Notify("The store was recently robbed and is empty...")
+        QBCore.Functions.Notify("The store was recently robbed and is empty or no police....")
         end
     end)
 end)
@@ -110,7 +115,7 @@ RegisterNetEvent('mt-ammurobbery:client:RoubarVitrine4')
 AddEventHandler("mt-ammurobbery:client:RoubarVitrine4", function()
     local pos = GetEntityCoords(PlayerPedId())
     QBCore.Functions.TriggerCallback("mt-ammurobbery:CooldownVitrines4", function(cooldown)
-        if not cooldown then
+        if not cooldown and CurrentCops == 2 then
     QBCore.Functions.Progressbar("vitrine4", "SEARCHING...", 5000, false, true, {
         disableMovement = true,
         disableCarMovement = true,
@@ -136,7 +141,7 @@ AddEventHandler("mt-ammurobbery:client:RoubarVitrine4", function()
         end
     end)
     else
-        QBCore.Functions.Notify("The store was recently robbed and is empty...")
+        QBCore.Functions.Notify("The store was recently robbed and is empty or no police....")
         end
     end)
 end)
@@ -145,7 +150,7 @@ RegisterNetEvent('mt-ammurobbery:client:RoubarVitrine5')
 AddEventHandler("mt-ammurobbery:client:RoubarVitrine5", function()
     local pos = GetEntityCoords(PlayerPedId())
     QBCore.Functions.TriggerCallback("mt-ammurobbery:CooldownVitrines5", function(cooldown)
-        if not cooldown then
+        if not cooldown and CurrentCops == 2 then
     QBCore.Functions.Progressbar("vitrine5", "SEARCHING...", 5000, false, true, {
         disableMovement = true,
         disableCarMovement = true,
@@ -171,7 +176,7 @@ AddEventHandler("mt-ammurobbery:client:RoubarVitrine5", function()
         end
     end)
     else
-        QBCore.Functions.Notify("The store was recently robbed and is empty...")
+        QBCore.Functions.Notify("The store was recently robbed and is empty or no police....")
         end
     end)
 end)
@@ -180,7 +185,7 @@ RegisterNetEvent('mt-ammurobbery:client:RoubarVitrine6')
 AddEventHandler("mt-ammurobbery:client:RoubarVitrine6", function()
     local pos = GetEntityCoords(PlayerPedId())
     QBCore.Functions.TriggerCallback("mt-ammurobbery:CooldownVitrines6", function(cooldown)
-        if not cooldown then
+        if not cooldown and CurrentCops == 2 then
     QBCore.Functions.Progressbar("vitrine5", "SEARCHING...", 5000, false, true, {
         disableMovement = true,
         disableCarMovement = true,
@@ -206,7 +211,7 @@ AddEventHandler("mt-ammurobbery:client:RoubarVitrine6", function()
         end
     end)
     else
-        QBCore.Functions.Notify("The store was recently robbed and is empty...")
+        QBCore.Functions.Notify("The store was recently robbed and is empty or no police....")
         end
     end)
 end)
@@ -215,7 +220,7 @@ RegisterNetEvent('mt-ammurobbery:client:RoubarBalas')
 AddEventHandler("mt-ammurobbery:client:RoubarBalas", function()
     local pos = GetEntityCoords(PlayerPedId())
     QBCore.Functions.TriggerCallback("mt-ammurobbery:CooldownBalas", function(cooldown)
-        if not cooldown then
+        if not cooldown and CurrentCops == 2 then
     QBCore.Functions.Progressbar("balas", "SEARCHING...", 5000, false, true, {
         disableMovement = true,
         disableCarMovement = true,
@@ -241,7 +246,7 @@ AddEventHandler("mt-ammurobbery:client:RoubarBalas", function()
         end
     end)
     else
-        QBCore.Functions.Notify("The store was recently robbed and is empty...")
+        QBCore.Functions.Notify("The store was recently robbed and is empty or no police....")
         end
     end)
 end)
@@ -250,7 +255,7 @@ RegisterNetEvent('mt-ammurobbery:client:RoubarBalas2')
 AddEventHandler("mt-ammurobbery:client:RoubarBalas2", function()
     local pos = GetEntityCoords(PlayerPedId())
     QBCore.Functions.TriggerCallback("mt-ammurobbery:CooldownBalas2", function(cooldown)
-        if not cooldown then
+        if not cooldown and CurrentCops == 2 then
     QBCore.Functions.Progressbar("balas2", "SEARCHING...", 5000, false, true, {
         disableMovement = true,
         disableCarMovement = true,
@@ -276,7 +281,7 @@ AddEventHandler("mt-ammurobbery:client:RoubarBalas2", function()
         end
     end)
     else
-        QBCore.Functions.Notify("The store was recently robbed and is empty...")
+        QBCore.Functions.Notify("The store was recently robbed and is empty or no police....")
         end
     end)
 end)
@@ -285,7 +290,7 @@ RegisterNetEvent('mt-ammurobbery:client:RoubarBalas3')
 AddEventHandler("mt-ammurobbery:client:RoubarBalas3", function()
     local pos = GetEntityCoords(PlayerPedId())
     QBCore.Functions.TriggerCallback("mt-ammurobbery:CooldownBalas3", function(cooldown)
-        if not cooldown then
+        if not cooldown and CurrentCops == 2 then
     QBCore.Functions.Progressbar("balas3", "SEARCHING...", 5000, false, true, {
         disableMovement = true,
         disableCarMovement = true,
@@ -311,7 +316,7 @@ AddEventHandler("mt-ammurobbery:client:RoubarBalas3", function()
         end
     end)
     else
-        QBCore.Functions.Notify("The store was recently robbed and is empty...")
+        QBCore.Functions.Notify("The store was recently robbed and is empty or no police....")
         end
     end)
 end)
@@ -320,7 +325,7 @@ RegisterNetEvent('mt-ammurobbery:client:RoubarColetes')
 AddEventHandler("mt-ammurobbery:client:RoubarColetes", function()
     local pos = GetEntityCoords(PlayerPedId())
     QBCore.Functions.TriggerCallback("mt-ammurobbery:CooldownColetes", function(cooldown)
-        if not cooldown then
+        if not cooldown and CurrentCops == 2 then
     QBCore.Functions.Progressbar("coletes", "SEARCHING...", 5000, false, true, {
         disableMovement = true,
         disableCarMovement = true,
@@ -346,7 +351,7 @@ AddEventHandler("mt-ammurobbery:client:RoubarColetes", function()
         end
     end)
     else
-        QBCore.Functions.Notify("The store was recently robbed and is empty...")
+        QBCore.Functions.Notify("The store was recently robbed and is empty or no police....")
         end
     end)
 end)
