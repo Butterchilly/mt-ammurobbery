@@ -47,6 +47,30 @@ Config.ammuVitrines = { -- vitrines conf every stealable vitrine is an object
 }
 ```
 
+## For ps-dispatch Alert ps-dispatch/client/alert.lua
+```
+local function AmmunitionRobbery(camId)
+    local coords = GetEntityCoords(cache.ped)
+
+    local dispatchData = {
+        message =  'Ammunition Robbery',
+        codeName = 'AmmunitionRobbery',
+        code = '10-90',
+        icon = 'fas fa-gun',
+        priority = 2,
+        coords = coords,
+        gender = GetPlayerGender(),
+        street = GetStreetAndZone(coords),
+        camId = camId,
+        alertTime = nil,
+        jobs = { 'leo' }
+    }
+
+    TriggerServerEvent('ps-dispatch:server:notify', dispatchData)
+end
+exports('AmmunitionRobbery', AmmunitionRobbery)
+```
+
 # Dependencies:
 qb-core: https://github.com/qbcore-framework/qb-core
 
