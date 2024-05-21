@@ -2,13 +2,21 @@ local QBCore = exports['qb-core']:GetCoreObject()
 local CurrentCops = 0
 local smashing = false
 
+function Dispatch()
+    if Config.Dispatch == 'qb' then
+        TriggerServerEvent('police:server:policeAlert', Lang:t("ammurobbery.police_notification"))
+    elseif Config.Dispatch == 'ps' then
+        exports['ps-dispatch']:EmsDown()
+    end
+end
+
 function PoliceCall()
     local chance = 75
     if GetClockHours() >= 0 and GetClockHours() <= 6 then
         chance = 50
     end
     if math.random(1, 100) <= chance then
-        TriggerServerEvent('police:server:policeAlert', Lang:t("ammurobbery.police_notification"))
+        Dispatch()
     end
 end
 
