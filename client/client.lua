@@ -33,6 +33,24 @@ local function loadAnimDict(dict)
     end
 end
 
+local function success()
+    local playerPed = PlayerPedId()
+    PoliceCall()
+    smashing = false
+    TriggerServerEvent("mt-ammurobbery:server:getVitrineItems", vitrineKey)
+    TriggerServerEvent('mt-ammurobbery:Server:CooldownVitrines', vitrineKey)
+    StopAnimTask(ped, dict, "machinic_loop_mechandplayer", 1.0)
+    ClearPedTasks(playerPed)
+end
+
+local function failed()
+    local playerPed = PlayerPedId()
+    smashing = false
+    QBCore.Functions.Notify(Lang:t("ammurobbery.error_failed"), "error")
+    TriggerServerEvent("evidence:server:CreateFingerDrop", pos)
+    ClearPedTasks(playerPed)
+end
+
 RegisterNetEvent('police:SetCopCount')
 AddEventHandler('police:SetCopCount', function(amount)
     CurrentCops = amount
@@ -63,20 +81,15 @@ AddEventHandler("mt-ammurobbery:client:startStealing", function(vitrineKey, enti
             disableMouse = false,
             disableCombat = true,
         },  {}, {}, {}, function() 
-            local playerPed = PlayerPedId()
-            local success = exports['qb-lock']:StartLockPickCircle(1,30)
-            if success then
-                PoliceCall()
-                smashing = false
-                TriggerServerEvent("mt-ammurobbery:server:getVitrineItems", vitrineKey)
-                TriggerServerEvent('mt-ammurobbery:Server:CooldownVitrines', vitrineKey)
-                StopAnimTask(ped, dict, "machinic_loop_mechandplayer", 1.0)
-                ClearPedTasks(playerPed)
-            else
-                smashing = false
-                QBCore.Functions.Notify(Lang:t("ammurobbery.error_failed"), "error")
-                TriggerServerEvent("evidence:server:CreateFingerDrop", pos)
-                ClearPedTasks(playerPed)
+            if Config.Minigame == 'qb-lock' then
+                local success = exports['qb-lock']:StartLockPickCircle(1,30)
+                if success then success() else failed() end
+            elseif Config.Minigame == 'ox_lib' then
+                local success = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}}, {'w', 'a', 's', 'd'})
+                if success then success() else failed() end
+            elseif Config.Minigame == 'ps-ui' then
+                local success = exports['ps-ui']:Circle(function(success)
+                if success then success() else failed() end end, 2, 20)          
             end
         end)
         elseif cooldown then

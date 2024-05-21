@@ -7,8 +7,9 @@ Config.boxDistance = 1.5 -- distance from box
 Config.requiredCopsCount = 2 -- required cops count to start stealing
 Config.searchTime = 5000 -- searchTime before getting items
 Config.cooldownTimer = 1000 * 60 * 60 -- 1000 = 1s // box cooldown
-Config.Dispatch = 'qb' -- qb or ox
 
+Config.Dispatch = 'qb' -- qb or ox
+Config.Minigame = 'ps-ui' -- ps-ui or ox_lib or qb-lock
 
 Config.ammuVitrines = { -- vitrines conf every stealable vitrine is an object
     vitrine1 = { -- preferable to set vitrinekey as name
